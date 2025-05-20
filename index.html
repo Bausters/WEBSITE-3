@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heath's Dog Emporium</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      color: #333;
+      overflow-x: hidden;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: #000;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    header nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .content {
+      margin-top: 100px;
+      padding: 20px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section {
+      padding: 60px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    h1, h2 {
+      margin-bottom: 20px;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .product {
+      width: calc(33.333% - 20px);
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .product h3 {
+      margin: 10px 0;
+    }
+    .product .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .buy-btn {
+      background: #000;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .cart-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #000;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .cart {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      width: 300px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 20px;
+      display: none;
+      z-index: 1001;
+    }
+    .cart h3 { margin-bottom: 10px; }
+    .flashy-ads {
+      position: fixed;
+      top: 150px;
+      left: 0;
+      width: 150px;
+      background: #ff0;
+      color: #000;
+      padding: 10px;
+      font-weight: bold;
+      animation: flash 1s infinite alternate;
+      transform: rotate(-10deg);
+    }
+    @keyframes flash {
+      0% { background: #ff0; }
+      100% { background: #f00; color: white; }
+    }
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #000;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>🐶 Heath's Dog Empire</div>
+    <nav>
+      <a href="#toys">Toys</a>
+      <a href="#beds">Beds</a>
+      <a href="#help">Help</a>
+      <a href="#sale">Sale</a>
+      <a href="#importance">Importance</a>
+    </nav>
+  </header>
+
+  <div class="flashy-ads">🔥 50% OFF Today Only! 🔥</div>
+
+  <div class="cart" id="cart">
+    <h3>Your Cart</h3>
+    <div id="cart-items"></div>
+    <button class="buy-btn">Checkout</button>
+  </div>
+
+  <div class="content">
+    <section id="toys" class="section">
+      <h2>Dog Toys</h2>
+      <div class="products">
+        <div class="product">
+          <img src="https://placedog.net/400/300?id=101" alt="Toy 1">
+          <h3>Squeaky Bone</h3>
+          <div class="actions">
+            <button class="buy-btn">Buy Now</button>
+            <div class="cart-icon" onclick="addToCart('Squeaky Bone')">🛒</div>
+          </div>
+        </div>
+        <!-- Add more toy products here -->
+      </div>
+    </section>
+
+    <section id="beds" class="section">
+      <h2>Dog Beds</h2>
+      <div class="products">
+        <div class="product">
+          <img src="https://placedog.net/400/300?id=102" alt="Bed 1">
+          <h3>Comfy Cloud Bed</h3>
+          <div class="actions">
+            <button class="buy-btn">Buy Now</button>
+            <div class="cart-icon" onclick="addToCart('Comfy Cloud Bed')">🛒</div>
+          </div>
+        </div>
+        <!-- Add more beds here -->
+      </div>
+    </section>
+
+    <section id="help" class="section">
+      <h2>Help & Support</h2>
+      <p>Email us at help@dogempire.fake or call 123-456-7890.</p>
+    </section>
+
+    <section id="sale" class="section">
+      <h2>Sales</h2>
+      <p>Check out our massive deals every Friday! Limited stock so hurry!</p>
+    </section>
+
+    <section id="importance" class="section">
+      <h2>Why Dog Toys & Beds Matter</h2>
+      <p>Enrichment is essential for happy, healthy doggos. Toys prevent boredom and beds protect joints. Treat your pup right!</p>
+    </section>
+
+    <section id="shipping" class="section">
+      <h2>Shipping Form</h2>
+      <form>
+        <input type="text" placeholder="Full Name" required><br><br>
+        <input type="text" placeholder="Address" required><br><br>
+        <input type="email" placeholder="Email" required><br><br>
+        <button class="buy-btn" type="submit">Place Order</button>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2025 Heath's Dog Empire. Built by Heath, powered by bark.
+  </footer>
+
+  <script>
+    function addToCart(itemName) {
+      const cart = document.getElementById('cart');
+      const cartItems = document.getElementById('cart-items');
+      const item = document.createElement('div');
+      item.textContent = itemName;
+      cartItems.appendChild(item);
+      cart.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
